@@ -6,15 +6,17 @@ public class DniInvalido extends IOException{
 
 	
 	//Constructor
-		public DniInvalido() {
-			
-		}
+	public DniInvalido(String message) {
+        super(message);
+    }
 
 		@Override
 		public String getMessage() {
-			// TODO Auto-generated method stub
 			return super.getMessage();
 		}
 		
+		public static void verificarDniInvalido(String dni) throws DniInvalido {
+	        
+		}
 		
 }

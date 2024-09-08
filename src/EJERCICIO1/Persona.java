@@ -27,4 +27,11 @@ public class Persona {
 	public void setDni(String dni) {
 		Dni = dni;
 	}
+	
+	public String toString() {
+		return "Nombre: " + Nombre + ", Apellido: " + Apellido + ", Dni: " + Dni ;
+	}
+	public String DatosPersona() {
+		return  Nombre + "," + Apellido + "," + Dni ;
+	}
 }

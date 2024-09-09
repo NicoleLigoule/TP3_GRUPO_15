@@ -1,6 +1,8 @@
 package EJERCICIO1;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Archivo {
 
@@ -29,6 +31,21 @@ public class Archivo {
 				return true;
 			}
 			return false;
+		}
+		//METODO QUE CREA EL ARCHIVO
+		public boolean creaArchivo()
+		{
+			FileWriter escritura;
+			try {
+				escritura = new FileWriter(ruta, true);
+				escritura.write("");
+				escritura.close();
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return false;
+				
 		}
 	
 	

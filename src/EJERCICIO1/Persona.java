@@ -28,10 +28,25 @@ public class Persona {
 		Dni = dni;
 	}
 	
+	@Override
 	public String toString() {
 		return "Nombre: " + Nombre + ", Apellido: " + Apellido + ", Dni: " + Dni ;
 	}
 	public String DatosPersona() {
 		return  Nombre + "," + Apellido + "," + Dni ;
 	}
+	
+	public Persona() {
+
+		Nombre = "sin nombre";
+		Apellido =  "sin Apellido";
+		Dni = "Sin Dni";
+	}
+    public Persona(String nombre, String apellido, String dni) {
+		super();
+		Nombre = nombre;
+		Apellido = apellido;
+		Dni = dni;
+	}
+	
 }

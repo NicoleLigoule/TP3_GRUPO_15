@@ -1,8 +1,15 @@
 package EJERCICIO1;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.TreeSet;
+import java.util.Comparator;
+
+
 
 public class Archivo {
 
@@ -48,6 +55,38 @@ public class Archivo {
 				
 		}
 	
-	
+	///metodo para leer clase personas guardadas 
+		  public TreeSet<Persona> leerPersonasGuardada() {
+		        TreeSet<Persona> personas = new TreeSet<>(new Comparator<Persona>() {
+		            @Override
+		            public int compare(Persona p1, Persona p2) {
+		                int apellidoComparison = p1.getApellido().compareTo(p2.getApellido());
+		                if (apellidoComparison != 0) {
+		                    return apellidoComparison;
+		                }
+		                return p1.getNombre().compareTo(p2.getNombre());
+		            }
+		        });
+
+		        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+		            String linea;
+
+		            while ((linea = br.readLine()) != null) {
+		                String[] datos = linea.split(",");
+
+		                String nombre = datos[0];
+		                String apellido = datos[1];
+		                String dni = datos[2];
+
+		                Persona persona = new Persona(nombre, apellido, dni);
+
+		                personas.add(persona);
+		            }
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		        
+		        return personas;
+		    }
 	
 }

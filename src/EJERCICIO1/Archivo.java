@@ -1,6 +1,7 @@
 package EJERCICIO1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -54,6 +55,25 @@ public class Archivo {
 			return false;
 				
 		}
+		
+		public boolean GuardarPersonasEnArchivo(TreeSet<Persona> Personas) {
+			if(Existe()==false) {
+				creaArchivo();
+			}
+		        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
+		            for (Persona Person : Personas) {
+		                bw.write(Person.GuardarDatos());
+		                bw.newLine();  
+		               
+		            }
+		            return true;
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+				return false;
+		    
+		}
+		
 	
 	///metodo para leer clase personas guardadas 
 		  public TreeSet<Persona> leerPersonasGuardada() {
@@ -88,5 +108,7 @@ public class Archivo {
 		        
 		        return personas;
 		    }
+		  
+		  
 	
 }

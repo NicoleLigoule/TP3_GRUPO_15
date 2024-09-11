@@ -81,6 +81,11 @@ public class Persona {
 			return false;
 		return true;
 	}
+	
+	
+	public String GuardarDatos() {
+		return  Nombre + "," + Apellido + "," + Dni ;
+	}
 
 
 }

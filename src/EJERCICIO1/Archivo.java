@@ -109,6 +109,21 @@ public class Archivo {
 		        return personas;
 		    }
 		  
-		  
+			public static boolean verificarDniInvalido(String dni) throws DniInvalido {
+			    boolean esNumerico = true; 
+			    for (int i = 0; i < dni.length(); i++) {
+			        char c = dni.charAt(i);
+
+			        if (!Character.isDigit(c)) {
+			        	DniInvalido ecxiondniInvalido = new DniInvalido();
+			        	throw ecxiondniInvalido;
+			           // esNumerico = false;
+			            //break;
+			        }
+			    }
+			    return esNumerico;
+
+				
+			}
 	
 }

@@ -55,23 +55,29 @@ public class Archivo {
 			return false;
 				
 		}
-		
+		//METODO QUE GUARDA EN UN ARCHIVO LOS DATOS DE UN TREESET DE OBJ PERSONAS
 		public boolean GuardarPersonasEnArchivo(TreeSet<Persona> Personas) {
-			if(Existe()==false) {
-				creaArchivo();
-			}
-		        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
-		            for (Persona Person : Personas) {
-		                bw.write(Person.GuardarDatos());
-		                bw.newLine();  
-		               
+		    if (!Existe()) {
+		        creaArchivo();
+		    }
+		    try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
+		        for (Persona person : Personas) {
+		            try {
+		                verificarDniInvalido(person.getDni());
+
+		                bw.write(person.GuardarDatos());
+		                bw.newLine();
+		            } catch (DniInvalido e) {
+		          
+		                System.err.println("DNI inválido para la persona: " + person.getNombre() + " " + person.getApellido() + ". No se guardará.");
 		            }
-		            return true;
-		        } catch (IOException e) {
-		            e.printStackTrace();
 		        }
-				return false;
-		    
+		        return true;
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+			return false;
+		  
 		}
 		
 	
@@ -93,7 +99,7 @@ public class Archivo {
 	           String linea;
 
 	           while ((linea = br.readLine()) != null) {
-	              String[] datos = linea.split(",");
+	              String[] datos = linea.split("-");
 
 	              String nombre = datos[0];
 	              String apellido = datos[1];

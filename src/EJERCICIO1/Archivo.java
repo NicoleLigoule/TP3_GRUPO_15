@@ -77,37 +77,47 @@ public class Archivo {
 	
 	///metodo para leer clase personas guardadas 
 		  public TreeSet<Persona> leerPersonasGuardada() {
-		        TreeSet<Persona> personas = new TreeSet<>(new Comparator<Persona>() {
-		            @Override
-		            public int compare(Persona p1, Persona p2) {
-		                int apellidoComparison = p1.getApellido().compareTo(p2.getApellido());
-		                if (apellidoComparison != 0) {
-		                    return apellidoComparison;
-		                }
-		                return p1.getNombre().compareTo(p2.getNombre());
-		            }
-		        });
-
-		        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
-		            String linea;
-
-		            while ((linea = br.readLine()) != null) {
-		                String[] datos = linea.split(",");
-
-		                String nombre = datos[0];
-		                String apellido = datos[1];
-		                String dni = datos[2];
-
-		                Persona persona = new Persona(nombre, apellido, dni);
-
-		                personas.add(persona);
-		            }
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
 		        
-		        return personas;
-		    }
+			  TreeSet<Persona> personas = new TreeSet<>(new Comparator<Persona>() {
+			  @Override
+	          public int compare(Persona p1, Persona p2) {
+	            int apellidoComparison = p1.getApellido().compareTo(p2.getApellido());
+	            if (apellidoComparison != 0) {
+	                return apellidoComparison;
+	            }
+	            return p1.getNombre().compareTo(p2.getNombre());
+	         }
+	      });
+
+	      try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+	           String linea;
+
+	           while ((linea = br.readLine()) != null) {
+	              String[] datos = linea.split(",");
+
+	              String nombre = datos[0];
+	              String apellido = datos[1];
+	              String dni = datos[2];
+
+	       try {	              
+	                verificarDniInvalido(dni);
+
+	                Persona persona = new Persona(nombre, apellido, dni);
+	                personas.add(persona);
+
+	            } catch (DniInvalido e) {
+
+	                System.err.println(e.getMessage()+ "la persona: " + nombre + " " + apellido + ": " + dni+" NO se agregara a la lista ");
+	            }
+	         }
+	       } catch (IOException e) {
+	        e.printStackTrace();
+	     }
+
+	     return personas;
+		         
+	  }
+		  
 		  
 			public static boolean verificarDniInvalido(String dni) throws DniInvalido {
 			    boolean esNumerico = true; 

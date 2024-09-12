@@ -19,7 +19,9 @@ public class Principal {
             System.out.println(persone);
         }
         
-
+        /// punto C 
+        Archivo arch2 = new Archivo("Resultado.txt");
+        arch2.GuardarPersonasEnArchivo(persona);
 	}
 
 }

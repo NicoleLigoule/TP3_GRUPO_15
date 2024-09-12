@@ -14,7 +14,7 @@ import java.util.Comparator;
 
 public class Archivo {
 
-	private String ruta;
+	private static String ruta;
 
 	//Constructores
 	public Archivo() {
@@ -141,5 +141,59 @@ public class Archivo {
 
 				
 			}
-	
+			
+			///Metodo inicializacion de archivo persona
+		    public static void cargarPersonasIniciales() {
+		        File archivo = new File(ruta);
+
+		        if (!archivo.exists()) {
+		            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+
+		                Persona[] personas = new Persona[27];
+
+		                personas[0] = new Persona("Pablo", "Ramirez", "11111112");
+		                personas[1] = new Persona("Alejandro", "Flores", "11111126");
+		                personas[2] = new Persona("Maria", "Rodriguez", "11111121");
+		                personas[3] = new Persona("Alejandro", "Flores", "11111126");
+		                personas[4] = new Persona("Daniel", "Torres", "11111115");
+		                personas[5] = new Persona("Diego", "Alvarez", "11111119");
+		                personas[6] = new Persona("Pablo", "Ramirez", "11111112");
+		                personas[7] = new Persona("Maria", "Ornelas", "245sffga");
+		                personas[8] = new Persona("Daniela", "Sanchez", "11111122");
+		                personas[9] = new Persona("Alejandro", "Herrera", "11111129");
+		                personas[10] = new Persona("Alvaro", "Ruiz", "11111113");
+		                personas[11] = new Persona("Sofia", "Sosa", "11111123");
+		                personas[12] = new Persona("Pablo", "Ramirez", "11111112");
+		                personas[13] = new Persona("Cristian", "Gorosito", "yiqeytu");
+		                personas[14] = new Persona("Lucia", "Romero", "11111120");
+		                personas[15] = new Persona("Carla", "Martinez", "11111125");
+		                personas[16] = new Persona("Pablo", "Ramirez", "11111112");
+		                personas[17] = new Persona("Carla", "Martinez", "11111125");
+		                personas[18] = new Persona("David", "Garcia", "11111114");
+		                personas[19] = new Persona("Alba", "Gonzalez", "11111128");
+		                personas[20] = new Persona("Hugo", "Perez", "11111116");
+		                personas[21] = new Persona("Pablo", "Ramirez", "11111112");
+		                personas[22] = new Persona("Alba", "Gonzalez", "11111128");
+		                personas[23] = new Persona("Lucia", "Romero", "11111120");
+		                personas[24] = new Persona("Maria", "Rodriguez", "11111121");
+		                personas[25] = new Persona("Sofia", "Sosa", "11111123");
+		                personas[26] = new Persona("Adrian", "Lopez", "11111117");
+
+
+		                for (Persona persona : personas) {
+		                    bw.write(persona.GuardarDatos());
+		                    bw.newLine();
+		                }
+
+		                System.out.println("Archivo creado y personas iniciales cargadas.");
+
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        } else {
+		            System.out.println("El archivo ya existe. No se sobrescribió.");
+		        }
+		    }
 }
+	
+

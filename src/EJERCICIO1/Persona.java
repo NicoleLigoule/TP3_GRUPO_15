@@ -32,10 +32,7 @@ public class Persona {
 	public String toString() {
 		return "Nombre: " + Nombre + ", Apellido: " + Apellido + ", Dni: " + Dni ;
 	}
-	public String DatosPersona() {
-		return  Nombre + "-" + Apellido + "-" + Dni ;
-	}
-	
+
 	public Persona() {
 
 		Nombre = "sin nombre";
@@ -84,8 +81,8 @@ public class Persona {
 	
 	
 	public String GuardarDatos() {
-		return  Nombre + "," + Apellido + "," + Dni ;
-	}
+		return  Nombre + "-" + Apellido + "-" + Dni ;
+		}
 
 
 }
